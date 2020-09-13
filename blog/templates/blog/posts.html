@@ -1,0 +1,149 @@
+{% load static from static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>cogitations</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href={% static "vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href={% static "vendor/fontawesome-free/css/all.min.css" %} rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+
+  <!-- Custom styles for this template -->
+  <link href={% static "css/clean-blog.min.css" %} rel="stylesheet">
+  <style>
+.center {
+  margin: auto;
+  width: 60%;
+  border: 3px solid #73AD21;
+  padding: 10px;
+}
+</style>
+
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" href={% url 'home' %}>STONE</a>
+      <a class="navbar-brand" href={% url 'allblogs' %}>Blog index</a>
+
+    </div>
+  </nav>
+
+  <!-- Page Header -->
+  <header class="masthead" style="background-image: url({% static 'assets/img/post.png' %})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="post-heading">
+            <h1>{{post.title}}</h1>
+            <h2 class="subheading">{{post.subject}}</h2>
+            <span class="meta">Posted by
+              <a href="{% url 'home' %}">Livingstone</a>
+              {{post.pub_date}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Post Content -->
+  <article>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+        {{post.body}}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <hr>
+  <div>
+    <form  action="#" method="post" autocomplete="off" >
+                    {% csrf_token %}
+                    <div class="col-md-2">{{form.name|as_crispy_field}}</div>
+                    <div class="col-md-4">{{form.body|as_crispy_field}}</div>
+
+                    </div>
+                  <button style='text-align:right' type="submit" class="btn btn-save"><i class="fas fa-dove"></i> send</button>
+                </form>
+  <hr>
+  </div>
+<h5>Comments:</h5>
+    {% for comment in comments %}
+    <div style="left:80px; background-color: #bca4d3;">
+        On {{comment.created_on.date }}&nbsp;
+        <b>{{ comment.name }}</b> wrote:
+    </div>
+    <p>{{ comment.body }}</p>
+  <hr>
+    {% empty %}
+    <p>Be the first to comment</p>
+    <hr>
+
+    {% endfor %}
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <ul class="list-inline text-center">
+            <li class="list-inline-item">
+              <a href="https://twitter.com/livingsstone9">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://web.facebook.com/victorious.victor.56">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="https://github.com/Livingstone99">
+                <span class="fa-stack fa-lg">
+                  <i class="fas fa-circle fa-stack-2x"></i>
+                  <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+                </span>
+              </a>
+            </li>
+          </ul>
+          <p class="copyright text-muted">Copyright &copy; stones {% now "Y" %}</p>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src={% static "vendor/jquery/jquery.min.js" %}></script>
+  <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
+
+  <!-- Custom scripts for this template -->
+  <script src={% static "js/clean-blog.min.js" %}></script>
+
+</body>
+
+</html>
