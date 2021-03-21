@@ -18,13 +18,13 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
-import projects.views
+
 urlpatterns = [
-    path('', projects.views.home, name = 'home'),
-    path('about/', projects.views.home, name = 'about'),
+    # path('', projects.views.home, name = 'home'),
+    # path('about/', projects.views.home, name = 'about'),
     path('blog/', include('blog.urls')),
-    path('project/', include('projects.urls')),
-    path('behind/', admin.site.urls),
+    # path('project/', include('projects.urls')),
+    path('manager/', admin.site.urls),
  ]
 urlpatterns += staticfiles_urlpatterns()
 if settings.DEBUG:

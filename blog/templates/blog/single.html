@@ -1,0 +1,289 @@
+{% load static from static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>{{ post.title|capfirst }} </title>
+
+  <!-- Bootstrap core CSS -->
+  <link href={% static "vendor/bootstrap/css/bootstrap.min.css" %} rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href={% static "vendor_single/css/blogpost.css" %} rel="stylesheet">
+
+  <!-- css -->
+    <link href={% static "css/bootstrap.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static  "css/materialdesignicons.min.css" %} rel="stylesheet" type="text/css" />
+    <link href={% static "css/style.min.css" %} rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+  <!-- Navigation -->
+
+<!--Navbar Start-->
+   <nav class="navbar navbar-expand-lg fixed-top navbar-custom sticky sticky-dark">
+        <div class="container">
+            <!-- LOGO -->
+            <a class="navbar-brand logo" href="#">
+                <!-- <h4 style="color:rgba(90,79,220,0.5)">Dreamtech</h4> -->
+<!--                <img  src={% static "images/dfix_logo3.png" %} alt="dreamfix" class="logo-dark" height="50" />-->
+                <!-- <img src="images/logo-light.png" alt="" class="logo-light" height="24" /> -->
+            </a>
+            <a href="{% url 'allblogs' %}">
+                <button class="navbar-toggler" type="button"  data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <img width="50" src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PGc+PHBhdGggZD0ibTUxMiA0NWMwLTI0Ljg1My0yMC4xNDctNDUtNDUtNDVoLTQyMmMtMjQuODUzIDAtNDUgMjAuMTQ3LTQ1IDQ1djkwYzAgOC4yODQgNi43MTYgMTUgMTUgMTVoNDgyYzguMjg0IDAgMTUtNi43MTYgMTUtMTV6IiBmaWxsPSIjN2Q4MWU3Ii8+PHBhdGggZD0ibTQ2NyAwaC0yMTF2MTUwaDI0MWM4LjI4NCAwIDE1LTYuNzE2IDE1LTE1di05MGMwLTI0Ljg1My0yMC4xNDctNDUtNDUtNDV6IiBmaWxsPSIjNWU2OWUyIi8+PGc+PGc+PHBhdGggZD0ibTgxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iI2ZmZjc5ZiIvPjwvZz48Zz48cGF0aCBkPSJtMTYxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iIzkwZTM2YSIvPjwvZz48Zz48cGF0aCBkPSJtMjQxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iI2ZmODBhNyIvPjwvZz48L2c+PGc+PHBhdGggZD0ibTAgMTM1djMzMmMwIDI0LjgxMyAyMC4xODcgNDUgNDUgNDVoNDIyYzI0LjgxMyAwIDQ1LTIwLjE4NyA0NS00NXYtMzMyeiIgZmlsbD0iI2Y5ZjlmOSIvPjwvZz48cGF0aCBkPSJtMjU2IDUxMmgyMTFjMjQuODEzIDAgNDUtMjAuMTg3IDQ1LTQ1di0zMzJoLTI1NnoiIGZpbGw9IiNlMmRmZjQiLz48L2c+PGc+PGc+PGc+PHBhdGggZD0ibTE3My4wNzggMzc3LjAwNWMtMTAuOTc5IDAtMTEuNjI2LS4xMTEtMTIuMzM5LS4yMzMtNC44MDEtLjgyMy04LjMxMS00Ljk4NS04LjMxMS05Ljg1NnYtOTkuOTE2YzAtNS41MjMgNC40NzgtMTAgMTAtMTBzMTAgNC40NzcgMTAgMTB2OTBjNi43NzQtLjAwMSAxNi4yMDYtLjAzNiAyNC45NjItLjA4NGguMDU3YzUuNDk3IDAgOS45NjggNC40NCA5Ljk5OSA5Ljk0NC4wMyA1LjUyMi00LjQyMSAxMC4wMjQtOS45NDQgMTAuMDU2LTExLjM1Ni4wNjMtMTkuMTA0LjA4OS0yNC40MjQuMDg5eiIgZmlsbD0iIzBhNzg5YiIvPjwvZz48cGF0aCBkPSJtMTE2LjgxMSAzMDkuODM5YzQuMTY1LTUuNTI1IDYuNjM4LTEyLjM5MyA2LjYzOC0xOS44MjkgMC0xOC4yMDItMTQuODA5LTMzLjAxLTMzLjAxLTMzLjAxaC0yOS4wNDdjLTUuNTIyIDAtMTAgNC40NzctMTAgMTB2MTAwYzAgMi42NiAxLjA2IDUuMjEgMi45NDQgNy4wODcgMS44NzUgMS44NjYgNC40MTIgMi45MTMgNy4wNTYgMi45MTNoLjA0NGMuMjY4LS4wMDEgMjYuODExLS4xMTkgMzQuMDc2LS4xMTkgMjAuMzU2IDAgMzYuOTE3LTE2LjU2MSAzNi45MTctMzYuOTE3IDAtMTIuNDI3LTYuMTc5LTIzLjQzMS0xNS42MTgtMzAuMTI1em0tMjYuMzcyLTMyLjgzOWM3LjE3NCAwIDEzLjAxIDUuODM2IDEzLjAxIDEzLjAxcy01LjgzNiAxMy4wMS0xMy4wMSAxMy4wMWMtMi4xMzkgMC0xOS4wNDguMDI3LTE5LjA0OC4wMjd2LTI2LjA0N3ptNS4wNzMgNzkuODgxYy00LjM4NSAwLTE1LjcwNC4wNDItMjQuMTIuMDc2di0zMy44NzdjMi43MDgtLjAxMSAyNC4xMi0uMDMyIDI0LjEyLS4wMzIgOS4zMjggMCAxNi45MTcgNy41ODkgMTYuOTE3IDE2LjkxN3MtNy41ODkgMTYuOTE2LTE2LjkxNyAxNi45MTZ6IiBmaWxsPSIjMGE3ODliIi8+PGc+PHBhdGggZD0ibTQwNy40NDYgMzc3Yy0zMy4wODQgMC02MC0yNi45MTYtNjAtNjBzMjYuOTE2LTYwIDYwLTYwYzEyLjAyMSAwIDIzLjYyNCAzLjU0NSAzMy41NTMgMTAuMjUyIDQuNTc2IDMuMDkyIDUuNzggOS4zMDggMi42ODggMTMuODg0LTMuMDkxIDQuNTc3LTkuMzEgNS43NzktMTMuODg0IDIuNjg5LTYuNjEtNC40NjUtMTQuMzQxLTYuODI2LTIyLjM1Ny02LjgyNi0yMi4wNTYgMC00MCAxNy45NDQtNDAgNDBzMTcuOTQ0IDQwIDQwIDQwYzIwLjEyNCAwIDI5LjU3My0xNC41NjUgMzIuMjk4LTMwaC0xOS4wNTFjLTUuNTIyIDAtMTAtNC40NzctMTAtMTBzNC40NzgtMTAgMTAtMTBoMjkuOTE1YzUuNTIyIDAgMTAgNC40NzcgMTAgMTAgMCAzNS4zMjgtMjEuODYxIDYwLjAwMS01My4xNjIgNjAuMDAxeiIgZmlsbD0iIzA4NDc1ZSIvPjwvZz48Zz48cGF0aCBkPSJtMjY3LjQ0NiAzNzdjLTMzLjA4NCAwLTYwLTI2LjkxNi02MC02MHMyNi45MTYtNjAgNjAtNjAgNjAgMjYuOTE2IDYwIDYwLTI2LjkxNiA2MC02MCA2MHptMC0xMDBjLTIyLjA1NiAwLTQwIDE3Ljk0NC00MCA0MHMxNy45NDQgNDAgNDAgNDAgNDAtMTcuOTQ0IDQwLTQwLTE3Ljk0NC00MC00MC00MHoiIGZpbGw9IiMwYTc4OWIiLz48L2c+PHBhdGggZD0ibTI2Ny40NDYgMjU3Yy0zLjkxNSAwLTcuNzM5LjM4OS0xMS40NDYgMS4xMDh2MjAuNTY5YzMuNjI5LTEuMDg2IDcuNDY5LTEuNjc3IDExLjQ0Ni0xLjY3NyAyMi4wNTYgMCA0MCAxNy45NDQgNDAgNDBzLTE3Ljk0NCA0MC00MCA0MGMtMy45NzcgMC03LjgxOC0uNTkyLTExLjQ0Ni0xLjY3N3YyMC41NjljMy43MDguNzE5IDcuNTMyIDEuMTA4IDExLjQ0NiAxLjEwOCAzMy4wODQgMCA2MC0yNi45MTYgNjAtNjBzLTI2LjkxNi02MC02MC02MHoiIGZpbGw9IiMwODQ3NWUiLz48L2c+PC9nPjwvZz48L3N2Zz4=" />
+            </button>
+                </a>
+
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mx-auto navbar-center" id="mySidenav">
+                    <li class="nav-item active">
+                        <a href="#home" class="nav-link">   </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#features" class="nav-link">   </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#Article" class="nav-link">  </a>
+                    </li>
+                    <!-- <li class="nav-item">
+                        <a href="#pricing" class="nav-link">Pricing</a>
+                    </li> -->
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link"> </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{% url 'allblogs' %}" class="nav-link"><img width = "50" src="data:image/svg+xml;base64,PHN2ZyBpZD0iQ2FwYV8xIiBlbmFibGUtYmFja2dyb3VuZD0ibmV3IDAgMCA1MTIgNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIHdpZHRoPSI1MTIiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGc+PGc+PHBhdGggZD0ibTUxMiA0NWMwLTI0Ljg1My0yMC4xNDctNDUtNDUtNDVoLTQyMmMtMjQuODUzIDAtNDUgMjAuMTQ3LTQ1IDQ1djkwYzAgOC4yODQgNi43MTYgMTUgMTUgMTVoNDgyYzguMjg0IDAgMTUtNi43MTYgMTUtMTV6IiBmaWxsPSIjN2Q4MWU3Ii8+PHBhdGggZD0ibTQ2NyAwaC0yMTF2MTUwaDI0MWM4LjI4NCAwIDE1LTYuNzE2IDE1LTE1di05MGMwLTI0Ljg1My0yMC4xNDctNDUtNDUtNDV6IiBmaWxsPSIjNWU2OWUyIi8+PGc+PGc+PHBhdGggZD0ibTgxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iI2ZmZjc5ZiIvPjwvZz48Zz48cGF0aCBkPSJtMTYxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iIzkwZTM2YSIvPjwvZz48Zz48cGF0aCBkPSJtMjQxIDgyLjVoLTIwYy04LjI4NCAwLTE1LTYuNzE2LTE1LTE1czYuNzE2LTE1IDE1LTE1aDIwYzguMjg0IDAgMTUgNi43MTYgMTUgMTVzLTYuNzE2IDE1LTE1IDE1eiIgZmlsbD0iI2ZmODBhNyIvPjwvZz48L2c+PGc+PHBhdGggZD0ibTAgMTM1djMzMmMwIDI0LjgxMyAyMC4xODcgNDUgNDUgNDVoNDIyYzI0LjgxMyAwIDQ1LTIwLjE4NyA0NS00NXYtMzMyeiIgZmlsbD0iI2Y5ZjlmOSIvPjwvZz48cGF0aCBkPSJtMjU2IDUxMmgyMTFjMjQuODEzIDAgNDUtMjAuMTg3IDQ1LTQ1di0zMzJoLTI1NnoiIGZpbGw9IiNlMmRmZjQiLz48L2c+PGc+PGc+PGc+PHBhdGggZD0ibTE3My4wNzggMzc3LjAwNWMtMTAuOTc5IDAtMTEuNjI2LS4xMTEtMTIuMzM5LS4yMzMtNC44MDEtLjgyMy04LjMxMS00Ljk4NS04LjMxMS05Ljg1NnYtOTkuOTE2YzAtNS41MjMgNC40NzgtMTAgMTAtMTBzMTAgNC40NzcgMTAgMTB2OTBjNi43NzQtLjAwMSAxNi4yMDYtLjAzNiAyNC45NjItLjA4NGguMDU3YzUuNDk3IDAgOS45NjggNC40NCA5Ljk5OSA5Ljk0NC4wMyA1LjUyMi00LjQyMSAxMC4wMjQtOS45NDQgMTAuMDU2LTExLjM1Ni4wNjMtMTkuMTA0LjA4OS0yNC40MjQuMDg5eiIgZmlsbD0iIzBhNzg5YiIvPjwvZz48cGF0aCBkPSJtMTE2LjgxMSAzMDkuODM5YzQuMTY1LTUuNTI1IDYuNjM4LTEyLjM5MyA2LjYzOC0xOS44MjkgMC0xOC4yMDItMTQuODA5LTMzLjAxLTMzLjAxLTMzLjAxaC0yOS4wNDdjLTUuNTIyIDAtMTAgNC40NzctMTAgMTB2MTAwYzAgMi42NiAxLjA2IDUuMjEgMi45NDQgNy4wODcgMS44NzUgMS44NjYgNC40MTIgMi45MTMgNy4wNTYgMi45MTNoLjA0NGMuMjY4LS4wMDEgMjYuODExLS4xMTkgMzQuMDc2LS4xMTkgMjAuMzU2IDAgMzYuOTE3LTE2LjU2MSAzNi45MTctMzYuOTE3IDAtMTIuNDI3LTYuMTc5LTIzLjQzMS0xNS42MTgtMzAuMTI1em0tMjYuMzcyLTMyLjgzOWM3LjE3NCAwIDEzLjAxIDUuODM2IDEzLjAxIDEzLjAxcy01LjgzNiAxMy4wMS0xMy4wMSAxMy4wMWMtMi4xMzkgMC0xOS4wNDguMDI3LTE5LjA0OC4wMjd2LTI2LjA0N3ptNS4wNzMgNzkuODgxYy00LjM4NSAwLTE1LjcwNC4wNDItMjQuMTIuMDc2di0zMy44NzdjMi43MDgtLjAxMSAyNC4xMi0uMDMyIDI0LjEyLS4wMzIgOS4zMjggMCAxNi45MTcgNy41ODkgMTYuOTE3IDE2LjkxN3MtNy41ODkgMTYuOTE2LTE2LjkxNyAxNi45MTZ6IiBmaWxsPSIjMGE3ODliIi8+PGc+PHBhdGggZD0ibTQwNy40NDYgMzc3Yy0zMy4wODQgMC02MC0yNi45MTYtNjAtNjBzMjYuOTE2LTYwIDYwLTYwYzEyLjAyMSAwIDIzLjYyNCAzLjU0NSAzMy41NTMgMTAuMjUyIDQuNTc2IDMuMDkyIDUuNzggOS4zMDggMi42ODggMTMuODg0LTMuMDkxIDQuNTc3LTkuMzEgNS43NzktMTMuODg0IDIuNjg5LTYuNjEtNC40NjUtMTQuMzQxLTYuODI2LTIyLjM1Ny02LjgyNi0yMi4wNTYgMC00MCAxNy45NDQtNDAgNDBzMTcuOTQ0IDQwIDQwIDQwYzIwLjEyNCAwIDI5LjU3My0xNC41NjUgMzIuMjk4LTMwaC0xOS4wNTFjLTUuNTIyIDAtMTAtNC40NzctMTAtMTBzNC40NzgtMTAgMTAtMTBoMjkuOTE1YzUuNTIyIDAgMTAgNC40NzcgMTAgMTAgMCAzNS4zMjgtMjEuODYxIDYwLjAwMS01My4xNjIgNjAuMDAxeiIgZmlsbD0iIzA4NDc1ZSIvPjwvZz48Zz48cGF0aCBkPSJtMjY3LjQ0NiAzNzdjLTMzLjA4NCAwLTYwLTI2LjkxNi02MC02MHMyNi45MTYtNjAgNjAtNjAgNjAgMjYuOTE2IDYwIDYwLTI2LjkxNiA2MC02MCA2MHptMC0xMDBjLTIyLjA1NiAwLTQwIDE3Ljk0NC00MCA0MHMxNy45NDQgNDAgNDAgNDAgNDAtMTcuOTQ0IDQwLTQwLTE3Ljk0NC00MC00MC00MHoiIGZpbGw9IiMwYTc4OWIiLz48L2c+PHBhdGggZD0ibTI2Ny40NDYgMjU3Yy0zLjkxNSAwLTcuNzM5LjM4OS0xMS40NDYgMS4xMDh2MjAuNTY5YzMuNjI5LTEuMDg2IDcuNDY5LTEuNjc3IDExLjQ0Ni0xLjY3NyAyMi4wNTYgMCA0MCAxNy45NDQgNDAgNDBzLTE3Ljk0NCA0MC00MCA0MGMtMy45NzcgMC03LjgxOC0uNTkyLTExLjQ0Ni0xLjY3N3YyMC41NjljMy43MDguNzE5IDcuNTMyIDEuMTA4IDExLjQ0NiAxLjEwOCAzMy4wODQgMCA2MC0yNi45MTYgNjAtNjBzLTI2LjkxNi02MC02MC02MHoiIGZpbGw9IiMwODQ3NWUiLz48L2c+PC9nPjwvZz48L3N2Zz4=" /></a>
+                    </li>
+                </ul>
+                <!-- <ul class="navbar-nav navbar-center">
+                    <li class="nav-item">
+                        <a href="#login" class="nav-link" data-toggle="modal" data-target="#exampleModalCenter">Log in</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#login" class="nav-link" data-toggle="modal" data-target="#exampleModalCenter-1">Register</a>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+  <!-- Page Content -->
+  <div class="container">
+
+    <div class="row">
+
+      <!-- Post Content Column -->
+      <div class="col-lg-8">
+
+        <!-- Title -->
+        <h1 class="mt-4">{{ post.title |capfirst }}</h1>
+
+        <!-- Author -->
+        <p class="lead">
+         <p>{{ post.date_display }}</p>
+        </p>
+
+        <hr>
+
+        <!-- Date/Time -->
+<!--        <p>{{ post.date_display }}</p>-->
+
+        <hr>
+
+        <!-- Preview Image -->
+        <img class="img-fluid rounded" src={{ post.image.url }} alt="{{ post.alternative_text }}">
+
+        <hr>
+
+        <!-- Post Content -->
+        <p>{{ post.body|safe }}</p>
+<!--        <footer class="blockquote-footer">Someone famous in-->
+<!--            <cite title="Source Title">Source Title</cite>-->
+<!--          </footer>-->
+<!--        </blockquote>-->
+
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error, nostrum, aliquid, animi, ut quas placeat totam sunt tempora commodi nihil ullam alias modi dicta saepe minima ab quo voluptatem obcaecati?</p>-->
+
+<!--        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>-->
+
+        <hr>
+
+        <!-- Comments Form -->
+        <div class="card my-4">
+          <h5 class="card-header">Leave a Comment:</h5>
+          <div class="card-body">
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-group">
+<!--                  <label for="name">name</label>-->
+                  <input id="name" class="form-control" placeholder="name" type="text"  name="name">
+                  <hr>
+
+                <textarea placeholder="drop your comment" name="comment" class="form-control" rows="3"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Single Comment -->
+          {% for comment in comments %}
+        <div class="media mb-4">
+<!--          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
+          <div class="media-body">
+            <u><h5 style="color:#968ebe" class="mt-0">{{ comment.name|capfirst }}</h5></u>
+            {{ comment.body }}
+
+              <br><span style="color:#ccc2ff; font-size:14px ">{{ comment.created_on }}</span>
+          </div>
+        </div>
+          <hr>
+          {% empty %}
+
+          <span>be the first to comment.</span>
+          {% endfor %}
+
+        <!-- Comment with nested comments -->
+<!--        <div class="media mb-4">-->
+<!--          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
+<!--          <div class="media-body">-->
+<!--            <h5 class="mt-0">Commenter Name</h5>-->
+<!--            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+
+<!--            <div class="media mt-4">-->
+<!--              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
+<!--              <div class="media-body">-->
+<!--                <h5 class="mt-0">Commenter Name</h5>-->
+<!--                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="media mt-4">-->
+<!--              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">-->
+<!--              <div class="media-body">-->
+<!--                <h5 class="mt-0">Commenter Name</h5>-->
+<!--                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--          </div>-->
+<!--        </div>-->
+
+      </div>
+
+      <!-- Sidebar Widgets Column -->
+      <div class="col-md-4">
+
+<!--        &lt;!&ndash; Search Widget &ndash;&gt;-->
+<!--        <div class="card my-4">-->
+<!--          <h5 class="card-header">Search</h5>-->
+<!--          <div class="card-body">-->
+<!--            <div class="input-group">-->
+<!--              <input type="text" class="form-control" placeholder="Search for...">-->
+<!--              <span class="input-group-append">-->
+<!--                <button class="btn btn-secondary" type="button">Go!</button>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+
+        <!-- Categories Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Categories</h5>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-lg-10">
+                <ul class="list-unstyled mb-0">
+            <li>
+                {% for caty in category %}
+              <hr>
+              <a href="{% url 'caty' caty.id %}"><strong><u>{{ caty.tag|capfirst }}</u></strong></a>
+                      {% endfor %}
+                </li>
+
+
+<!--                  <li>-->
+<!--                    <a href="#">Web Design</a>-->
+<!--                  </li>-->
+<!--                  <li>-->
+<!--                    <a href="#">HTML</a>-->
+<!--                  </li>-->
+<!--                  <li>-->
+<!--                    <a href="#">Freebies</a>-->
+<!--                  </li>-->
+
+                </ul>
+              </div>
+              <div class="col-lg-6">
+                <ul class="list-unstyled mb-0">
+<!--                  <li>-->
+<!--                    <a href="#">JavaScript</a>-->
+<!--                  </li>-->
+<!--                  <li>-->
+<!--                    <a href="#">CSS</a>-->
+<!--                  </li>-->
+<!--                  <li>-->
+<!--                    <a href="#">Tutorials</a>-->
+<!--                  </li>-->
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Side Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">Key note </h5>
+          <div class="card-body">
+            {{ post.summary }}
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /.row -->
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+<!--  <footer class="py-5 bg-dark">-->
+<!--    <div class="container">-->
+<!--      <p class="m-0 text-center text-white">Copyright &copy; Your Website 2020</p>-->
+<!--    </div>-->
+<!--    &lt;!&ndash; /.container &ndash;&gt;-->
+<!--  </footer>-->
+
+    {% include "blog/footer.html" %}
+
+  <script src={% static "js/jquery.min.js" %}></script>
+       <script src={% static "js/bootstrap.bundle.min.js" %}></script>
+       <script src={% static "js/scrollspy.min.js" %}></script>
+       <script src={% static "js/jquery.easing.min.js" %}></script>
+       <!-- feather icon -->
+       <script src={% static "js/feather.js" %}></script>
+       <!-- unicons icon -->
+       <script src={% static "js/unicons.js" %}></script>
+       <!-- Main Js -->
+       <script src={% static "js/app.js" %}></script>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src={% static "vendor/jquery/jquery.min.js" %}></script>
+  <script src={% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}></script>
+
+<!--  <script>-->
+<!--    document.getElementById("name").setAttribute('size', '5');-->
+<!--  </script>-->
+</body>
+
+</html>
